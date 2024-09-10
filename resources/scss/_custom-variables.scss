@@ -1,0 +1,27 @@
+//
+$primary: $blue !default;
+$secondary: $gray-600 !default;
+$success: $green !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $black !default;
+
+$lw-pink: #c61d61;
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+    (
+        "primary": $lw-pink,
+        "secondary": $secondary,
+        "success": $success,
+        "info": $info,
+        "warning": $warning,
+        "danger": $danger,
+        "light": $light,
+        "dark": $dark,
+        "dark-2": #505050,
+    ),
+    $theme-colors
+);

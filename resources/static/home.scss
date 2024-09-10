@@ -1,0 +1,404 @@
+body {
+    font-family: "Varela Round";
+}
+
+#mainNav {
+    min-height: 56px;
+    background-color: rgba(28, 28, 28, 0.8);
+    backdrop-filter: blur(2px) grayscale(0.4);
+
+    .navbar-toggler {
+        font-size: 80%;
+        padding: 0.75rem;
+        color: #c61d61;
+        border: 1px solid #c61d61;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .navbar-brand {
+        color: #161616;
+        font-weight: 700;
+        padding: 0.9rem 0;
+    }
+
+    .navbar-nav .nav-item {
+        &:hover {
+            color: fade(white, 80%);
+            outline: none;
+            background-color: transparent;
+        }
+
+        &:active,
+        &:focus {
+            outline: none;
+            background-color: transparent;
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    #mainNav {
+        padding-top: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+        background-color: transparent;
+        backdrop-filter: none;
+        transition: background-color 0.3s ease-in-out;
+
+        .navbar-brand {
+            padding: 0.5rem 0;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-link {
+            transition: none;
+            padding: 2rem 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.5rem;
+
+            &:hover {
+                color: rgba(255, 255, 255, 0.75);
+            }
+
+            &:active {
+                color: white;
+            }
+        }
+
+        &.navbar-shrink {
+            background-color: rgba(28, 28, 28, 0.8);
+
+            .navbar-brand {
+                color: white;
+            }
+
+            .nav-link {
+                color: white;
+                padding: 1.5rem 1.5rem 1.25rem;
+                border-bottom: 0.25rem solid transparent;
+
+                &:hover {
+                    color: #c61d61;
+                }
+
+                &:active {
+                    color: #467370;
+                }
+
+                &.active {
+                    color: #c61d61;
+                    outline: none;
+                    border-bottom: 0.25rem solid #c61d61;
+                }
+            }
+        }
+    }
+}
+
+.masthead {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 35rem;
+    padding: 15rem 0;
+    background: linear-gradient(
+            to bottom,
+            rgba(22, 22, 22, 0.3) 0%,
+            rgba(22, 22, 22, 0.7) 75%,
+            #161616 100%
+        ),
+        url("../../imgs/home/bg-masthead.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+
+    .lw-main-text-block {
+        // background-color: rgba(0, 0, 0, 0.1);
+        // padding: 12px;
+        // backdrop-filter: blur(2px) grayscale(0.2);
+        // border-radius: 4px;
+    }
+
+    h1 {
+        // font-family: "Varela Round";
+        font-family: 'Qwigley', cursive;
+        font-size: 2.5rem;
+        line-height: 2.5rem;
+        letter-spacing: 0.8rem;
+        background: -webkit-linear-gradient(
+            rgba(255, 255, 255, 0.9),
+            rgba(255, 255, 255, 0.3)
+        );
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+    }
+
+    h2 {
+        // max-width: 20rem;
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .masthead h1 {
+        font-size: 4rem;
+        line-height: 6rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .masthead {
+        height: 100vh;
+        padding: 0;
+
+        h1 {
+            font-size: 6rem;
+            // line-height: 5rem;
+            // letter-spacing: 0.8rem;
+            padding: 50px;
+        }
+
+        h2 {
+            // max-width: 30rem;
+            font-size: 1.5rem;
+        }
+    }
+}
+
+.btn.lw-special-btn {
+    font-family: "Qwigley", cursive;
+    font-size: 4em;
+    text-transform: none;
+    padding: 10px 40px 0 40px;
+    backdrop-filter: blur(2px) grayscale(0.4);
+    background-color: #c61d61;
+    letter-spacing: 0.25rem;
+}
+
+.btn {
+    box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
+    padding: 1.25rem 2rem;
+    font-family: "Varela Round";
+    font-size: 80%;
+    text-transform: uppercase;
+    letter-spacing: 0.15rem;
+    border: 0;
+}
+
+.premium-section {
+    padding-top: 10rem;
+    background: linear-gradient(
+        to bottom,
+        rgba(22, 22, 22, 0.3) 0%,
+        rgba(22, 22, 22, 0.2) 75%,
+        rgba(22, 22, 22, 0.8) 100%
+    );
+
+    p {
+        margin-bottom: 5rem;
+    }
+}
+
+.features-section {
+    padding: 10rem 0;
+
+    .featured-text {
+        padding: 2rem;
+    }
+
+    .feature-text {
+        padding: 3rem;
+        font-size: 90%;
+    }
+}
+
+@media (min-width: 992px) {
+    .features-section .featured-text {
+        padding: 0 0 0 2rem;
+        border-left: 0.5rem solid #c61d61;
+    }
+}
+
+@media (min-width: 992px) {
+    .features-section .feature-text {
+        padding: 5rem;
+
+        hr {
+            border-color: #c61d61;
+            border-width: 0.25rem;
+            width: 30%;
+        }
+    }
+}
+
+.lw-search-section {
+    padding: 10rem 0;
+    background: linear-gradient(
+            to bottom,
+            rgba(22, 22, 22, 0.1) 0%,
+            rgba(22, 22, 22, 0.5) 75%,
+            #161616 100%
+        ),
+        url("../../imgs/home/people-2561578_1920.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+
+    input,
+    select {
+        box-shadow: 0 0.1875rem 0.1875rem 0 rgba(0, 0, 0, 0.1) !important;
+        padding: 1.25rem 2rem;
+        height: auto;
+        font-family: "Varela Round";
+        font-size: 80%;
+        text-transform: uppercase;
+        letter-spacing: 0.15rem;
+        border: 0;
+    }
+
+    .custom-select {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+}
+
+.card.lw-transparent-card {
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 0;
+    backdrop-filter: blur(3px) grayscale(0.4);
+    padding-top: 16px;
+}
+
+.lw-feature-items {
+    line-height: 2em;
+}
+
+.contact-section {
+    padding: 5rem 0 0;
+
+    .card {
+        border: 0;
+        border-bottom: 0.25rem solid #c61d61;
+
+        h4 {
+            font-size: 0.8rem;
+            font-family: "Varela Round";
+            text-transform: uppercase;
+            letter-spacing: 0.15rem;
+        }
+
+        hr {
+            border-color: #c61d61;
+            border-width: 0.25rem;
+            width: 3rem;
+        }
+    }
+
+    .social {
+        margin-top: 5rem;
+
+        a {
+            text-align: center;
+            height: 3rem;
+            width: 3rem;
+            // background: rgba(255, 255, 255, 0.1);
+            border-radius: 100%;
+            line-height: 3rem;
+            // color: rgba(255, 255, 255, 0.3);
+
+            &:hover {
+                // color: rgba(255, 255, 255, 0.5);
+            }
+
+            &:active {
+                // color: #fff;
+            }
+        }
+    }
+}
+
+footer {
+    padding: 5rem 0;
+}
+
+.lw-logo-img {
+    height: 80px;
+    max-width: 60vw;
+}
+
+@media (max-width: 768px) {
+    .input-group > .form-control,
+    .input-group > .custom-select,
+    input.form-control,
+    select.form-control {
+        width: 100%;
+    }
+    .lw-search-section {
+        .input-group {
+            display: block;
+        }
+
+        .input-group > .form-control,
+        .input-group > .form-control-plaintext,
+        .input-group > .custom-select,
+        .input-group > .custom-file {
+            color: #000000;
+            margin-bottom: 6px;
+            border-radius: 6px !important;
+        }
+
+        .btn {
+            width: 100%;
+            margin-bottom: 6px;
+            border-radius: 6px !important;
+        }
+    }
+}
+
+// this class also defined in custom.scss
+.lw-premium-badge {
+    &.lw-on-cover-image {
+        width: 100px;
+        position: absolute;
+        z-index: 1;
+        left: 24px;
+        background-position: top left;
+        top: -24px;
+        height: 60px;
+    }
+    & {
+        width: 100%;
+        display: inline-block;
+        background: url(./../../imgs/premium-badge.svg) no-repeat center center;
+        height: 100px;
+        /* width: 100px; */
+        margin-top: 26px;
+    }
+}
+
+.lw-has-premium-badge::after {
+    @extend .lw-premium-badge;
+    content: "";
+    position: absolute;
+    height: 24px;
+    // width: 36px;
+    top: -18px;
+    right: -10px;
+}
+
+.lw-premium-feature-badge {
+    @extend .lw-premium-badge;
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    margin-top: 0px;
+    margin-left: 2px;
+}
+// till this

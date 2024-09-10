@@ -1,0 +1,134 @@
+.lw-login-register-page .lw-other-page-content {
+  margin-top: 200px;
+}
+.lw-login-register-page .lw-other-page-content .lw-page-description {
+  white-space: pre-line;
+  padding: 10px 0 50px 0;
+}
+.lw-login-register-page #wrapper #content-wrapper {
+  background-color: #f8f9fc;
+}
+.lw-login-register-page .lw-page-bg {
+  background-size: cover;
+  background-position: center center;
+  background-color: #1c1b20;
+  position: fixed;
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+.lw-login-register-page .lw-other-page-nav {
+  border-bottom-right-radius: 0;
+}
+.lw-login-register-page .lw-other-page-nav img {
+  max-height: 60px;
+}
+.lw-login-register-page .form-group .form-control,
+.lw-login-register-page .lw-user-gender-select-box {
+  padding-left: 10px;
+}
+.lw-login-register-page .form-group .selectize-control.form-control {
+  background-color: #121117 !important;
+  padding-left: 8px;
+  color: #9596a0;
+  border-radius: 4px;
+}
+.lw-login-register-page .form-group .selectize-control.form-control.single .selectize-input:after {
+  margin-top: 2px;
+}
+.lw-login-register-page .form-group .selectize-control.form-control .selectize-dropdown {
+  padding-left: 0px;
+}
+.lw-login-register-page .lw-logo-img {
+  height: 80px;
+}
+.lw-login-register-page .card,
+.lw-login-register-page .lw-update-wizard {
+  -webkit-backdrop-filter: blur(6px) grayscale(0.5);
+          backdrop-filter: blur(6px) grayscale(0.5);
+  background-color: rgba(18, 17, 23, 0.7);
+}
+@media (min-width: 767px) {
+  .lw-login-register-page .card {
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    border-radius: 0;
+    z-index: 1;
+    overflow: auto !important;
+  }
+  .lw-login-register-page .card .card-body {
+    display: grid;
+    align-items: center;
+  }
+}
+@media (max-width: 768px) {
+  .lw-login-register-page .lw-logo-img-on-bg {
+    display: none;
+  }
+  .lw-login-register-page .card .card-body {
+    padding: 0 !important;
+  }
+}
+.lw-login-register-page .sticky-footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+.lw-login-register-page form.user .custom-checkbox.small label {
+  line-height: 1.1rem;
+}
+.lw-login-register-page .lw-update-wizard {
+  padding: 20px;
+  margin-top: 5vh;
+  margin-bottom: 5vh;
+}
+.lw-login-register-page .lw-update-wizard .lw-wizard-logout-btn {
+  position: absolute;
+  right: 10px;
+  top: -10px;
+}
+.lw-login-register-page .lw-update-wizard .lw-logo-img {
+  height: 250px;
+  max-width: 300px;
+}
+.lw-login-register-page .lw-update-wizard.sw-theme-dots > ul.step-anchor,
+.lw-login-register-page .lw-update-wizard.sw-theme-dots .step-content,
+.lw-login-register-page .lw-update-wizard.sw-theme-dots .sw-toolbar {
+  background: transparent;
+}
+.lw-login-register-page .lw-update-wizard.sw-theme-dots > ul.step-anchor:before {
+  top: 83px;
+}
+.lw-login-register-page .lw-update-wizard.sw-theme-dots > ul.step-anchor > li > a {
+  color: #969696;
+  pointer-events: none;
+  font-weight: 400;
+}
+.lw-login-register-page .lw-update-wizard.sw-theme-dots > ul.step-anchor > li > a:after {
+  margin-top: 24px;
+}
+.lw-login-register-page .lw-update-wizard.sw-theme-dots > ul.step-anchor > li.active > a {
+  color: #d2019b;
+  background: transparent;
+}
+.lw-login-register-page .lw-update-wizard.sw-theme-dots > ul.step-anchor > li.active > a:before {
+  color: #d2019a;
+}
+.lw-login-register-page .lw-update-wizard.sw-theme-dots > ul.step-anchor > li.active > a:after {
+  background: #d2019a;
+}
+.lw-login-register-page .lw-logo-img-on-bg {
+  position: fixed;
+  bottom: 180px;
+  z-index: 1;
+  width: 25%;
+  left: 50px;
+}
