@@ -1332,6 +1332,8 @@ Route::group([
                 ]);
             });
         });
+        // Payment Process
+        Route::get('pay-package/{package_id}', "\App\Http\Controllers\PaymentController@payPackageWeb");
     });
 
     // coingate success callback routes
@@ -1357,4 +1359,9 @@ Route::group([
         'as' => 'crypto-webhook',
         'uses' => '\App\Yantrana\Components\User\Controllers\CreditWalletController@handleOrderPaymentCryptoWebhook',
     ]);
+
+    // Public routes for payments
+    Route::get('payment-process-success/{order_id}', "\App\Http\Controllers\PaymentController@paymentProcessSucess");
+    Route::get('payment-process-failure/{order_id}', "\App\Http\Controllers\PaymentController@paymentProcessFailure");
+    Route::get('payment-process-webhook/{order_id}', "\App\Http\Controllers\PaymentController@paymentProcessWebhook");
 });

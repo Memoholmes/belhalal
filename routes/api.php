@@ -625,5 +625,8 @@ Route::group([
                 'uses' => 'ApiNotificationController@readAllNotification',
             ]);
         });
+        // Payment Routes
+        Route::get('pay-package/{package_id}', "\App\Http\Controllers\PaymentController@payPackageApi");
+        Route::post('update-payment-status', "\App\Http\Controllers\PaymentController@updatePaymentStatusApi");
     });
 });
