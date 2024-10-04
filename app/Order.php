@@ -13,17 +13,16 @@ class Order extends Model
 
     public function successUrl()
     {
-        return url('payment-process-success/' . $this->id);
+        return url('payment-process-success/' . $this->uid);
     }
 
     public function failureUrl()
     {
-        return url('payment-process-failure/' . $this->id);
+        return url('payment-process-failure/' . $this->uid);
     }
 
     public function webhookUrl()
     {
-        return "https://api.webhookinbox.com/i/3OIQaeR7/in/";
-        return url('payment-process-webhook/' . $this->id);
+        return url('api/payment-process-webhook/' . $this->uid);
     }
 }

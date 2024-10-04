@@ -11,6 +11,8 @@ use App\Order;
 use App\Services\Integrations\Payment\Hesabe\Models\HesabeCheckoutRequestModel;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
+use App\Services\Integrations\Payment\Constants\PaymentStatus;
 
 class PaymentController extends BaseController
 {
@@ -29,22 +31,28 @@ class PaymentController extends BaseController
         $paymentUrl = $this->hesabe->makePaymentUrl($requestData);
         return redirect()->to($paymentUrl);
     }
-    public function paymentProcessSucess(int $orderId, Request $request)
+    // Handle on success redirect
+    public function paymentProcessSucess(string $orderUid, Request $request)
     {
-        $order = Order::findOrFail($orderId);
-        $this->hesabe->paymentProcess($order, $request->data);
-        dd($request->all());
+        $order = Order::where('uid', $orderUid)->firstOrFail();
+        $status = $this->hesabe->paymentProcessAfterRedirect($order, $request->data, true);
+        return view('payments.hesabe-success', ['uid' => $orderUid, 'status' => $status]);
+
     }
-    public function paymentProcessFailure(int $orderId, Request $request)
+    // Handle on failure redirect
+    public function paymentProcessFailure(string $orderUid, Request $request)
     {
-        $order = Order::findOrFail($orderId);
-        $this->hesabe->paymentProcess($order, $request->data);
-        dd($request->all());
+        $order = Order::where('uid', $orderUid)->firstOrFail();
+        $status = $this->hesabe->paymentProcessAfterRedirect($order, $request->data, false);
+        return view('payments.hesabe-failure', ['uid' => $orderUid, 'status' => $status]);
     }
 
-    public function paymentProcessWebhook(int $orderId, Request $request)
+    // Handle webhook hit
+    public function paymentProcessWebhook(string $orderUid, Request $request)
     {
-        dd($request->all(), $orderId);
+        sleep(10); // Sleep till the redirect done or fail
+        $status = $this->hesabe->paymentsProcessByOrderUid($orderUid);
+        dump($orderUid ,$status);
     }
     
     public function payPackageApi($packageId)
@@ -103,5 +111,20 @@ class PaymentController extends BaseController
             'success' => true,
             'data' => [],
         ]);
+    }
+
+    public function checkPaymentsCronJob()
+    {
+        $orders = Order::whereBetween('created_at', [Carbon::now()->subHours(1), Carbon::now()->subMinutes(10)])
+            ->where('after_payment_is_processing', false)
+            ->where('after_payment_proccess_is_completed', false)
+            ->where('payment_status', PaymentStatus::PENDING)
+            ->get();
+        dump($orders);
+        foreach ($orders as $order) {
+            $status = $this->hesabe->paymentsProcessByOrderUid($order->uid);
+            dump($order->uid ,$status);
+            sleep(1);
+        }
     }
 }

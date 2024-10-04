@@ -1363,5 +1363,5 @@ Route::group([
     // Public routes for payments
     Route::get('payment-process-success/{order_id}', "\App\Http\Controllers\PaymentController@paymentProcessSucess");
     Route::get('payment-process-failure/{order_id}', "\App\Http\Controllers\PaymentController@paymentProcessFailure");
-    Route::get('payment-process-webhook/{order_id}', "\App\Http\Controllers\PaymentController@paymentProcessWebhook");
+    Route::get('check-payments-cronjob', "\App\Http\Controllers\PaymentController@checkPaymentsCronJob");
 });

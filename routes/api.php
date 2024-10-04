@@ -629,4 +629,5 @@ Route::group([
         Route::get('pay-package/{package_id}', "\App\Http\Controllers\PaymentController@payPackageApi");
         Route::post('update-payment-status', "\App\Http\Controllers\PaymentController@updatePaymentStatusApi");
     });
+    Route::post('payment-process-webhook/{order_id}', "\App\Http\Controllers\PaymentController@paymentProcessWebhook");
 });

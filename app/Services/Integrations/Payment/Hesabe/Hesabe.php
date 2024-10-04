@@ -7,6 +7,8 @@ use App\Services\Integrations\Payment\Hesabe\Misc\PaymentHandler;
 use App\Services\Integrations\Payment\Hesabe\Models\HesabeCheckoutRequestModel;
 use App\Services\Orders\Orders;
 use App\Order;
+use Illuminate\Support\Facades\Http;
+use App\Services\Integrations\Payment\Constants\PaymentStatus;
 
 class Hesabe
 {
@@ -44,20 +46,51 @@ class Hesabe
         return $baseUrl . '?data='. $responseToken;
     }
 
-    public function paymentProcess(Order $order, string $data)
+    protected function getPaymentInfo(string $orderUid)
+    {
+        $url = env('HESABE_PAYMENT_API_URL') . "/api/transaction/". $orderUid ."?isOrderReference=1";
+        $response = Http::withHeaders([
+            'Accept' => 'application/json',
+            'accessCode' => env('HESABE_ACCESS_CODE')
+        ])->get($url);
+        return $response->json();
+    }
+
+    public function paymentProcessAfterRedirect(Order $order, string $data, bool $status): int
     {
         $decryptResponse = $this->hesabeCrypt::decrypt($data, $this->secretKey, $this->ivKey);
         $decryptResponse = json_decode($decryptResponse, true);
         $decryptResponse = $decryptResponse['response'];
-        if ($decryptResponse['resultCode'] == "ACCEPT") {
-            // Success
-            dd($decryptResponse);
-            return (new Orders)->OrderPaymentSuccess($order->uid, $decryptResponse['transactionId']);
+        // Success
+        if ($status) {
+            (new Orders)->OrderPaymentSuccess($order->uid, $decryptResponse['transactionId']);
+            return PaymentStatus::SUCCESS;
         }
-        if ($decryptResponse['resultCode'] != "ACCEPT") {
-            // Failure
-            dd($decryptResponse);
-            return (new Orders)->OrderPaymentFailure($order->uid);
+        // Failure
+        if (!$status) {
+            (new Orders)->OrderPaymentFailure($order->uid);
+            return PaymentStatus::FAILURE;
+        }
+    }
+
+    public function paymentsProcessByOrderUid(string $orderUid): int
+    {
+        $paymentInfo = $this->getPaymentInfo($orderUid);
+        // Still pending not processd by user
+        if (empty($paymentInfo['data'])) {
+            return PaymentStatus::PENDING;
+        }
+
+        // Success Case
+        if ($paymentInfo['data']['status'] == "SUCCESSFUL") {
+            (new Orders)->OrderPaymentSuccess($orderUid, $paymentInfo['data']['TransactionID']);
+            return PaymentStatus::SUCCESS;
+        }
+
+        // Failure Case
+        if ($paymentInfo['data']['status'] == "FAILED") {
+            (new Orders)->OrderPaymentFailure($orderUid);
+            return PaymentStatus::FAILURE;
         }
     }
 }

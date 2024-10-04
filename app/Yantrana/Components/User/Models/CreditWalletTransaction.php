@@ -15,6 +15,8 @@ class CreditWalletTransaction extends BaseModel
      */
     protected $table = 'credit_wallet_transactions';
 
+    protected $guarded = [];
+
     /**
      * The attributes that should be casted to native types.
      *
